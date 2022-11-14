@@ -4,10 +4,10 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2022-09-06T20:18:19-05:00",
+    "exported_at": "2022-11-13T18:05:06-06:00",
     "name": "Node.JS",
     "author": "andy@andyishereboi.com",
-    "description": "Node.JS egg",
+    "description": "Egg to run Node.JS applications.",
     "features": null,
     "docker_images": {
         "Node.JS 18": "ghcr.io\/parkervcp\/yolks:nodejs_18",
@@ -18,7 +18,7 @@
         "Node.JS 12": "ghcr.io\/parkervcp\/yolks:nodejs_12"
     },
     "file_denylist": [],
-    "startup": "if [[ {{AUTO_UPDATE}} == \"1\" ]]; then rm -rf \/home\/container\/panel-temp-files\/ && git clone https:\/\/${ACCESS_TOKEN}@github.com\/${GIT_REPOSITORY} -b ${GIT_BRANCH} panel-temp-files && cp -p -rf \/home\/container\/panel-temp-files\/* \/home\/container\/ && rm -rf \/home\/container\/panel-temp-files\/; fi; if [[ ! -z ${NODE_PACKAGES} ]]; then \/usr\/local\/bin\/npm install ${NODE_PACKAGES}; fi; if [[ ! -z ${UNNODE_PACKAGES} ]]; then \/usr\/local\/bin\/npm uninstall ${UNNODE_PACKAGES}; fi; if [ -f \/home\/container\/package.json ]; then \/usr\/local\/bin\/npm install; fi; \/usr\/local\/bin\/node \/home\/container\/{{BOT_JS_FILE}}",
+    "startup": "if [[ {{AUTO_UPDATE}} == \"1\" ]]; then rm -rf \/home\/container\/panel-temp-files\/ && git clone https:\/\/${ACCESS_TOKEN}@github.com\/${GIT_REPOSITORY} -b ${GIT_BRANCH} panel-temp-files && cp -p -rf \/home\/container\/panel-temp-files\/. \/home\/container\/ && rm -rf \/home\/container\/panel-temp-files\/; fi; if [[ ! -z ${NODE_PACKAGES} ]]; then \/usr\/local\/bin\/npm install ${NODE_PACKAGES}; fi; if [[ ! -z ${UNNODE_PACKAGES} ]]; then \/usr\/local\/bin\/npm uninstall ${UNNODE_PACKAGES}; fi; if [ -f \/home\/container\/package.json ]; then \/usr\/local\/bin\/npm install; fi; \/usr\/local\/bin\/node \/home\/container\/{{BOT_JS_FILE}}",
     "config": {
         "files": "{}",
         "startup": "{\r\n    \"done\": [\r\n        \"done\",\r\n        \"running\",\r\n        \"started\",\r\n        \"on\",\r\n        \"start\",\r\n        \"run\"\r\n    ]\r\n}",
@@ -34,6 +34,26 @@
     },
     "variables": [
         {
+            "name": "Auto Update",
+            "description": "Pull the latest files on startup when using a GitHub repo.",
+            "env_variable": "AUTO_UPDATE",
+            "default_value": "0",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|boolean",
+            "field_type": "text"
+        },
+        {
+            "name": "Git Access Token",
+            "description": "Access token to use for GitHub. \r\nGet one from https:\/\/github.com\/settings\/tokens",
+            "env_variable": "ACCESS_TOKEN",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "field_type": "text"
+        },
+        {
             "name": "Git Repo",
             "description": "GitHub Repo to clone\r\n\r\nex. username\/repository",
             "env_variable": "GIT_REPOSITORY",
@@ -44,13 +64,13 @@
             "field_type": "text"
         },
         {
-            "name": "Auto Update",
-            "description": "Pull the latest files on startup when using a GitHub repo.",
-            "env_variable": "AUTO_UPDATE",
-            "default_value": "0",
+            "name": "GitHub Branch",
+            "description": "The branch to pull from",
+            "env_variable": "GIT_BRANCH",
+            "default_value": "main",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|boolean",
+            "rules": "required|string",
             "field_type": "text"
         },
         {
@@ -74,16 +94,6 @@
             "field_type": "text"
         },
         {
-            "name": "Git Access Token",
-            "description": "Access token to use for GitHub. \r\nGet one from https:\/\/github.com\/settings\/tokens",
-            "env_variable": "ACCESS_TOKEN",
-            "default_value": "",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "nullable|string",
-            "field_type": "text"
-        },
-        {
             "name": "Uninstall Node packages",
             "description": "Uninstall node packages.\r\n\r\nUse spaces to separate.",
             "env_variable": "UNNODE_PACKAGES",
@@ -91,16 +101,6 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "nullable|string",
-            "field_type": "text"
-        },
-        {
-            "name": "GitHub Branch",
-            "description": "The branch to pull from",
-            "env_variable": "GIT_BRANCH",
-            "default_value": "main",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string",
             "field_type": "text"
         }
     ]
