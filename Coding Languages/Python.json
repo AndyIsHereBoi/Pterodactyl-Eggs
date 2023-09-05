@@ -4,9 +4,9 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2022-11-13T18:05:09-06:00",
+    "exported_at": "2023-09-04T21:22:54-05:00",
     "name": "Python",
-    "author": "andy@andyishereboi.com",
+    "author": "parker@parkervcp.com",
     "description": "Egg to run Python applications.",
     "features": null,
     "docker_images": {
@@ -43,36 +43,6 @@
             "field_type": "text"
         },
         {
-            "name": "Git Access Token",
-            "description": "Access token to use for GitHub. \r\nGet one from https:\/\/github.com\/settings\/tokens",
-            "env_variable": "ACCESS_TOKEN",
-            "default_value": "",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "nullable|string",
-            "field_type": "text"
-        },
-        {
-            "name": "Git Repo",
-            "description": "GitHub Repo to clone\r\n\r\nex. username\/repository",
-            "env_variable": "GIT_REPOSITORY",
-            "default_value": "",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "nullable|string",
-            "field_type": "text"
-        },
-        {
-            "name": "GitHub Branch",
-            "description": "The branch to pull from",
-            "env_variable": "GIT_BRANCH",
-            "default_value": "main",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string",
-            "field_type": "text"
-        },
-        {
             "name": "Bot py file",
             "description": "The file that starts the bot.",
             "env_variable": "BOT_PY_FILE",
@@ -93,10 +63,40 @@
             "field_type": "text"
         },
         {
+            "name": "Git Access Token",
+            "description": "Access token to use for GitHub. \r\nGet one from https:\/\/github.com\/settings\/tokens",
+            "env_variable": "ACCESS_TOKEN",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "field_type": "text"
+        },
+        {
             "name": "Requirements file",
             "description": "if there are other requirements files to choose from.",
             "env_variable": "REQUIREMENTS_FILE",
             "default_value": "requirements.txt",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Git Repo",
+            "description": "GitHub Repo to clone\r\n\r\nex. username\/repository",
+            "env_variable": "GIT_REPOSITORY",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "field_type": "text"
+        },
+        {
+            "name": "GitHub Branch",
+            "description": "The branch to pull from",
+            "env_variable": "GIT_BRANCH",
+            "default_value": "main",
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string",
